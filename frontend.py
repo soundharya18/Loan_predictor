@@ -37,12 +37,15 @@ with st.container(border=True):
 
     input_values = [(age,genders.index(gender),educationl.index(education),income,experience,
                      home_ownerships.index(home_ownership),
-                     loan_amount,loan_intents.index(loan_intent),loan_int_rat_income,
+                     loan_amount,loan_intents.index(loan_intent),loan_int_rat_income,loan_percent_income,
                      cb_person_cred_hist_length,credit_score,previous_loan_defaults_on_files.index(previous_loan_defaults_on_file))]
     
     if st.button('Predict'):
          out=rfmodel.predict(input_values)
-         st.subheader(out)
+         if out[0]==1:
+            st.subheader('Loan can be sanctioned')
+         else:
+             st.subheader('Loan can not be sanctioned')
 
 
 
